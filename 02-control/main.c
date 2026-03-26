@@ -29,12 +29,19 @@ void led_off_callback(const char* args){
 void led_blink_callback(const char* args){
     led_task_state_set(LED_STATE_BLINK);
 }
+void led_blink_set_period_ms_callback(const char* args){
+    uint32_t period_ms = 0;
+    sscanf(args, "%u", &period_ms);
+    led_task_set_blink_period_ms(period_ms);
+}
+
 api_t device_api[] =
 {
 	{"version", version_callback, "get device name and firmware version"},
-    {"on",led_on_callback,""},
-    {"off",led_off_callback,""},
-    {"blink",led_blink_callback,""},
+    {"on",led_on_callback,"Turn on led"},
+    {"off",led_off_callback,"Turn off led"},
+    {"blink",led_blink_callback,"Led starts blinking"},
+    {"set_period", led_blink_set_period_ms_callback, "Set period of blinking"},
 	{NULL, NULL, NULL},
 };
 

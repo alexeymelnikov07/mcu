@@ -2,10 +2,9 @@
 
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-#include "stdint.h"
 
 const uint LED_PIN = 25;
-uint32_t LED_BLINK_PERIOD_US = 500000;
+uint LED_BLINK_PERIOD_US = 500000;
 
 uint64_t led_ts;
 led_state_t led_state;
@@ -20,10 +19,6 @@ void led_task_init(){
 
 void led_task_state_set(led_state_t state){
     led_state = state;
-}
-
-void led_task_set_blink_period_ms(uint32_t period_ms){
-    LED_BLINK_PERIOD_US=period_ms*1000;
 }
 
 void led_task_handle(){
